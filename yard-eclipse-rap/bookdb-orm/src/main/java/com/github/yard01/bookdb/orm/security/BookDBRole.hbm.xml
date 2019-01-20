@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01.01.2018 19:43:19 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping schema="SECURITY">
+ <class name="com.github.yard01.bookdb.orm.security.BookDBRole" table="WEBROLES">
+  <id name="ID" type="java.lang.Integer">
+   <column name="ID"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="name" type="java.lang.String">
+   <column name="NAME"/>
+  </property>
+  <property generated="never" lazy="false" name="PerspectiveID" type="java.lang.String">
+   <column name="DBROLE"/>
+  </property>
+ </class>
+</hibernate-mapping>

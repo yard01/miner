@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02.01.2018 14:03:09 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping schema="HOMEDB">
+ <class name="com.github.yard01.bookdb.orm.LNK_Type_Item" table="LNK_TYPES_ITEMS">
+  <id access="field" name="ID" type="java.lang.Integer">
+   <column name="ID"/>
+   <generator class="assigned"/>
+  </id>
+  <many-to-one class="com.github.yard01.bookdb.orm.HUB_Type"
+   fetch="join" name="hub_Type">
+   <column name="HUB_TYPE"/>
+  </many-to-one>
+  <many-to-one class="com.github.yard01.bookdb.orm.HUB_Item"
+   fetch="join" name="hub_Item">
+   <column name="HUB_ITEM"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>

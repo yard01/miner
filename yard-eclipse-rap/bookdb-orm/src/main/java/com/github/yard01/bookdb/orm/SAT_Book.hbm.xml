@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02.01.2018 14:03:09 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping schema="HOMEDB">
+ <class name="com.github.yard01.bookdb.orm.SAT_Book" table="SAT_BOOKS">
+  <id name="ID" type="java.lang.Integer">
+   <column name="ID"/>
+   <generator class="increment">
+   		<param name="schema">HOMEDB</param>
+   </generator>
+  </id>
+  <property generated="never" lazy="false" name="author" type="java.lang.String">
+   <column name="AUTHOR"/>
+  </property>
+  <property generated="never" lazy="false" name="name" type="java.lang.String">
+   <column name="NAME"/>
+  </property>
+  <property generated="never" lazy="false" name="series" type="java.lang.String">
+   <column name="SERIES"/>
+  </property>
+  <property generated="never" lazy="false" name="genre" type="java.lang.String">
+   <column name="GENRE"/>
+  </property>
+  <property generated="never" lazy="false" name="publisher" type="java.lang.String">
+   <column name="PUBLISHER"/>
+  </property>
+  <property generated="never" lazy="false" name="pbYear" type="java.lang.Integer">
+   <column name="PBYEAR"/>
+  </property>
+  <property generated="never" lazy="false" name="note" type="java.lang.String">
+   <column name="NOTE"/>
+  </property>
+  <many-to-one class="com.github.yard01.bookdb.orm.HUB_Item"
+   fetch="join" name="hub_Item">
+   <column name="HUB_ITEM"/>
+  </many-to-one>
+  
+ </class>
+</hibernate-mapping>

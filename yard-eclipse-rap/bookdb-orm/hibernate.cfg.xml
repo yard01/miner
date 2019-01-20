@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>  
+   <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>  
+  	<!-- JDBC connection pool (use the built-in) -->
+
+   <property name="hibernate.connection.url">jdbc:derby:/home/yard/projects/databases/simpleDB</property>
+   <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+   <property name="show_sql">true</property>
+   
+   <property name="hibernate.transaction.auto_close_session">true</property>
+   
+    <!-- Enable Hibernate's automatic session context management -->
+   <property name="current_session_context_class">thread</property>
+  
+   <mapping resource = "com/github/yard01/bookdb/orm/security/BookDBRole.hbm.xml"/>
+   <mapping resource = "com/github/yard01/bookdb/orm/security/BookDBUser.hbm.xml"/>
+   <mapping resource = "com/github/yard01/bookdb/orm/HUB_Type.hbm.xml"/>
+   <mapping resource = "com/github/yard01/bookdb/orm/LNK_Type_Item.hbm.xml"/>
+   <mapping resource = "com/github/yard01/bookdb/orm/HUB_Item.hbm.xml"/>
+   <mapping resource = "com/github/yard01/bookdb/orm/SAT_Book.hbm.xml"/>
+  
+ </session-factory>
+</hibernate-configuration>

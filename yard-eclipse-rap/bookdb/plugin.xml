@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="mailapp.entrypoints"
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            path="/bookdb"
+            applicationId="bookdb.mailapp"
+            id="bookdb.entrypoint">
+      </entrypoint>
+   </extension>
+   <extension
+         id="bookdb.mailapp"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            thread="main"
+            cardinality="singleton-global"
+            visible="true">
+         <run
+               class="bookdb.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Default Perspective"
+            class="bookdb.Perspective"
+            id="bookdb.perspective">
+      </perspective>
+      <perspective
+            class="bookdb.ui.AdminPerspective"
+            id="bookdb.ui.perspective.dbwriter"
+            name="AdminPerspective">
+      </perspective>
+      <perspective
+            class="bookdb.ui.UserPerspective"
+            id="bookdb.ui.perspective.dbreader"
+            name="UserPerspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            name="Book  List"
+            icon="icons/journal_icon.gif"
+            class="bookdb.View"
+            id="bookdb.view">
+      </view>
+      <view
+            class="bookdb.LoginViewPart"
+            id="bookdb.viewLOGIN"
+            name="LoginView"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            class="bookdb.ui.ReportView"
+            id="bookdb.ui.viewREPORT"
+            name="Book Report"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu">
+            
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+      </menuContribution>
+   </extension>
+
+</plugin>
