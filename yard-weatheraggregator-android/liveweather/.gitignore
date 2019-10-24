@@ -1,0 +1,5 @@
+/build
+/libs
+*.iml
+proguard-rules.pro
+.attach_*

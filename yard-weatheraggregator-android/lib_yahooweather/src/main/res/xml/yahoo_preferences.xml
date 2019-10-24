@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<!--
+    <SwitchPreferenceCompat
+        app:key="notifications"
+        app:title="Enable message notifications"/>
+-->
+    <!--
+   <Preference
+       app:key="feedback"
+       app:title="Send feedback"
+       app:summary="Report technical issues or suggest new features"/>
+   -->
+
+    <EditTextPreference
+        app:key="@string/yahoo_appid_textview"
+        app:title="@string/yahoo_appid_text"
+        />
+
+    <EditTextPreference
+        app:key="@string/yahoo_clientid_textview"
+        app:title="@string/yahoo_clientid_text"
+        />
+
+    <EditTextPreference
+        app:key="@string/yahoo_clientsecret_textview"
+        app:title="@string/yahoo_clientsecret_text"
+        />
+
+
+    <Preference app:title="@string/yahoo_key_request_title"
+        app:key="@string/yahoo_key_request_button"
+        app:summary="@string/yahoo_key_request_text"/>
+
+    <Preference app:title="@string/yahoo_reset_text"
+        app:key="@string/yahoo_reset_button"
+        />
+
+    <!--
+    <EditTextPreference
+        app:key="@"
+        -->
+
+</PreferenceScreen>

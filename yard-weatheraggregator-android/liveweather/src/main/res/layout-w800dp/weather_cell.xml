@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_cell"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/open_forecast_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_ImageView"
+        android:layout_marginStart="-26dp"
+        android:layout_marginLeft="-26dp"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/temperature_TextView"
+        android:layout_toRightOf="@+id/temperature_TextView"
+        android:background="@drawable/view_details24" />
+
+    <ImageButton
+        android:id="@+id/refresh_weather_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location_ImageView"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/available_updates24" />
+
+    <ImageView
+        android:id="@+id/weather_icon_ImageView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/default_icon" />
+
+    <ImageView
+        android:id="@+id/weather_icon_vector_ImageView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:tint="@android:color/background_light"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_wi_cloudy" />
+
+    <ProgressBar
+        android:id="@+id/weather_ProgressBar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/temperature_TextView"
+        android:layout_alignEnd="@+id/temperature_TextView"
+        android:layout_alignRight="@+id/temperature_TextView"
+        android:layout_marginTop="-15dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/weather_location_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weather_icon_ImageView"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@+id/location_ImageView"
+        android:layout_toRightOf="@+id/location_ImageView"
+        android:text="@string/three_dots" />
+
+    <TextView
+        android:id="@+id/temperature_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/updateTime_TextView"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="-1dp"
+        android:layout_toEndOf="@+id/weather_icon_ImageView"
+        android:layout_toRightOf="@+id/weather_icon_ImageView"
+        android:text="@string/not_available"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/updateTime_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_toEndOf="@+id/weather_icon_ImageView"
+        android:layout_toRightOf="@+id/weather_icon_ImageView"
+        android:text="@string/three_dots"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/wind_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temperature_TextView"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="-5dp"
+        android:layout_toEndOf="@+id/wind_ImageView"
+        android:layout_toRightOf="@+id/wind_ImageView"
+        android:text="@string/three_dots" />
+
+    <ImageView
+        android:id="@+id/location_ImageView"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_below="@+id/wind_ImageView"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/marker24" />
+
+    <ImageView
+        android:id="@+id/wind_ImageView"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_below="@+id/weather_icon_ImageView"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/ic_wind" />
+
+    <TextView
+        android:id="@+id/time_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weather_location_TextView"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/refresh_weather_Button"
+        android:layout_toRightOf="@+id/refresh_weather_Button"
+        android:text="@string/three_dots" />
+
+</RelativeLayout>

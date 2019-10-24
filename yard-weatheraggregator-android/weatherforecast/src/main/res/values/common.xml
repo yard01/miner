@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="weatherforecast_app_name">weatherforecast</string>
+    <string name="celsius_deg">°C</string>
+    <string name="fahrenheit_deg">°F</string>
+    <string name="time_format">HH:mm</string>
+
+</resources>

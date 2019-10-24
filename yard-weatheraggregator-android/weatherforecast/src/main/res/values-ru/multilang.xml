@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="upd_time">обнов:</string>
+    <string name="not_available">Н/Д</string>
+    <string name="speed_unit">м/с</string>
+    <string name="pressure_unit">мм рт.ст.</string>
+    <string name="forecast_header">Агрегатор Погоды</string>
+    <string name="wind_N">С</string>
+    <string name="wind_S">Ю</string>
+    <string name="wind_W">З</string>
+    <string name="wind_E">В</string>
+    <string name="wind_NW">СЗ</string>
+    <string name="wind_SW">ЮЗ</string>
+    <string name="wind_NE">СВ</string>
+    <string name="wind_SE">ЮВ</string>
+</resources>

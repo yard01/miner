@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yahoo_server_name">Yahoo Weather</string>
+    <string name="yahoo_appid_text">Application ID</string>
+    <string name="yahoo_clientid_text">Consumer Key</string>
+    <string name="yahoo_clientsecret_text">Consumer Secret</string>
+    <string name="yahoo_already_adjusted">Adjusted</string>
+    <string name="yahoo_reset_text">Reset to defaults</string>
+    <string name="yahoo_key_request_text">Create Yahoo account and get your own access key for FREE</string>
+    <string name="yahoo_key_request_title">Create Yahoo account</string>
+
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="openweathermap_server_name">The Open Weather Map</string>
+    <string name="openweathermap_server_addr">https://api.openweathermap.org/data/2.5/</string>
+    <string name="openweathermap_server_icons">http://openweathermap.org/</string>
+    <string name="openweathermap_server_sign_up">https://home.openweathermap.org/users/sign_up/</string>
+    <string name="openweathermap_apikey_request_button">openweathermap_apikey_request_button</string>
+    <string name="openweathermap_reset_button">openweathermap_reset_button</string>
+    <string name="openweathermap_apikey_textview">openweathermap_apikey_textview</string>
+
+</resources>

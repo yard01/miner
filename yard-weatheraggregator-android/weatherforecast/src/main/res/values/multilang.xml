@@ -1,0 +1,15 @@
+<resources>
+    <string name="upd_time">updated:</string>
+    <string name="not_available">N/A</string>
+    <string name="speed_unit">m/s</string>
+    <string name="pressure_unit">mm Hg</string>
+    <string name="forecast_header">Weather Aggregator</string>
+    <string name="wind_N">N</string>
+    <string name="wind_S">S</string>
+    <string name="wind_W">W</string>
+    <string name="wind_E">E</string>
+    <string name="wind_NW">NW</string>
+    <string name="wind_SW">SW</string>
+    <string name="wind_NE">NE</string>
+    <string name="wind_SE">SE</string>
+</resources>

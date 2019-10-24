@@ -1,0 +1,11 @@
+<resources>
+    <string name="yahoo_app_name" >Yahoo Weather</string>
+    <string name="yahoo_server_addr">https://weather-ydn-yql.media.yahoo.com/</string>
+    <string name="yahoo_server_sign_up">https://developer.yahoo.com/apps/create/</string>
+    <string name="yahoo_server_app">forecastrss</string>
+    <string name="yahoo_appid_textview">yahoo_appid_textview</string>
+    <string name="yahoo_clientid_textview">yahoo_clientid_textview</string>
+    <string name="yahoo_clientsecret_textview">yahoo_clientsecret_textview</string>
+    <string name="yahoo_key_request_button">yahoo_key_request_button</string>
+    <string name="yahoo_reset_button">yahoo_reset_button</string>
+</resources>

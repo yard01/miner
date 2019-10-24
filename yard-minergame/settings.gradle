@@ -1,2 +1,0 @@
-include 'linux.i386', 'linux.x86_64', 'win.i386', 'win.x86_64'
-rootProject.name = 'yard-minergame'

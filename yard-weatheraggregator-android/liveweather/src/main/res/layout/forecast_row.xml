@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/forecast_row_CardView"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="8dp"
+    app:contentPadding="16dp">
+
+    <TextView
+        android:id="@+id/time_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="@string/three_dots"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/daymonth_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/three_dots"
+        android:textSize="14sp" />
+
+
+    <ImageView
+        android:id="@+id/forecast_icon_ImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="64dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/default_icon" />
+
+    <TextView
+        android:id="@+id/temperatures_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="128dp"
+        android:text="@string/three_dots"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/wind_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="54dp"
+        android:text="TextView" />
+
+
+</androidx.cardview.widget.CardView>

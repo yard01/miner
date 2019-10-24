@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="forecastfactoryclasses">
+        <item>com.github.yard01.sandbox.lib_openweathermap.OWMProviderFactory</item>
+        <!--<item>com.github.yard01.sandbox.lib_gismeteo.GismeteoProviderFactory</item>-->
+        <item>com.github.yard01.sandbox.lib_yahooweather.YahooProviderFactory</item>
+    </string-array>
+</resources>

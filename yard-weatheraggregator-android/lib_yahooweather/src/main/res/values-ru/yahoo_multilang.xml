@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yahoo_server_name">Yahoo Погода</string>
+    <string name="yahoo_appid_text">Идентификатор приложения</string>
+    <string name="yahoo_clientid_text">Идентификатор клиента</string>
+    <string name="yahoo_clientsecret_text">Ключ клиента</string>
+    <string name="yahoo_already_adjusted">Задан</string>
+    <string name="yahoo_key_request_text">Создайте учетную запись Yahoo и получите свой персональный ключ доступа бесплатно</string>
+    <string name="yahoo_key_request_title">Создать учетную запись Yahoo</string>
+    <string name="yahoo_reset_text">Вернуть начальные настройки</string>
+</resources>

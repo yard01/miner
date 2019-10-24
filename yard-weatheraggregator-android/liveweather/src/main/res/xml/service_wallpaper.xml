@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:thumbnail="@android:drawable/presence_online"
+    android:settingsActivity="com.github.yard01.sandbox.liveweather.MainActivity"
+    >
+</wallpaper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SettingsActivity">
+
+    <Spinner
+        android:id="@+id/spinner_weatherserver_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+<!--
+    <Button
+        android:id="@+id/tmp_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:text="AAA" />
+
+    <Button
+        android:id="@+id/forecast_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Temp Forecast Button" />
+-->
+    <LinearLayout
+            android:id="@+id/weather_server_fragment_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+    </LinearLayout>
+
+</LinearLayout>

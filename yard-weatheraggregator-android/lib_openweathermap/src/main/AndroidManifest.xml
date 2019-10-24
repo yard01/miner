@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.yard01.sandbox.lib_openweathermap">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

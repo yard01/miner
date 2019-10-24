@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="openweathermap_apikey_text">API-ключ доступа</string>
+    <string name="openweathermap_apikey_request_title">Получить API-ключ</string>
+    <string name="openweathermap_apikey_request_text">Получите свой персональный API-ключ бесплатно</string>
+    <string name="openweathermap_reset">Про умолчанию</string>
+</resources>

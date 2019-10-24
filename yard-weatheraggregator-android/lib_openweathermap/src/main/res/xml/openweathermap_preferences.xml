@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--
+        <SwitchPreferenceCompat
+            app:key="notifications"
+            app:title="Enable message notifications"/>
+    -->
+    <!--
+   <Preference
+       app:key="feedback"
+       app:title="Send feedback"
+       app:summary="Report technical issues or suggest new features"/>
+   -->
+
+    <EditTextPreference
+        app:key="@string/openweathermap_apikey_textview"
+        app:title="@string/openweathermap_apikey_text" />
+
+    <Preference
+        app:key="@string/openweathermap_apikey_request_button"
+        app:summary="@string/openweathermap_apikey_request_text"
+        app:title="@string/openweathermap_apikey_request_title" />
+
+    <Preference
+        app:key="@string/openweathermap_reset_button"
+        app:title="@string/openweathermap_reset" />
+
+
+</PreferenceScreen>

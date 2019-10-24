@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="openweathermap_apikey_text">API-key</string>
+    <string name="openweathermap_apikey_request_title">Get API-key</string>
+    <string name="openweathermap_apikey_request_text">Get your own API-key for free</string>
+    <string name="openweathermap_reset">Reset to defaults</string>
+
+</resources>
