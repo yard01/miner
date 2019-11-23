@@ -10,7 +10,8 @@
     <Spinner
         android:id="@+id/spinner_weatherserver_selector"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp" />
 <!--
     <Button
         android:id="@+id/tmp_button"

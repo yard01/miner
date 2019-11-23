@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.github.yard01.sandbox.liveweather.PreferenceController;
+import com.github.yard01.sandbox.weatherforecast.Locator;
 import com.github.yard01.sandbox.weatherforecast.Weather;
 import com.github.yard01.sandbox.weatherforecast.WeatherForecastProvider;
 import com.github.yard01.sandbox.weatherforecast.persistence.converters.WeatherConverter;
@@ -21,19 +22,14 @@ import com.github.yard01.sandbox.weatherforecast.tools.LiveweatherTools;
 import com.github.yard01.sandbox.weatherforecast.viewmodel.WeatherForecastViewModel;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LiveData;
-import androidx.paging.DataSource;
-import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
-import androidx.paging.PositionalDataSource;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,31 +44,32 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.yard01.sandbox.liveweather.R;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ForecastActivity extends AppCompatActivity {
-    public final static int  PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
+    public final static int  PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static WeatherForecastViewModel model;
+    private static Location lc;
     private Weather weather;
     private TextView windTextView;
     private TextView pressTextView;
     private TextView logoTextView;
+    private ProgressBar locationProgessBar;
     private String providerName = "";
     private Toolbar toolbar;
     private CollapsingToolbarLayout toolbarLayout;
+    private boolean reloadDataOnCreate = false;
+    private boolean isForceLocationRequest= false;
  //////////////////////////////////////////////////////////
     public static final int SIZE = 10;
 
@@ -163,6 +160,19 @@ public class ForecastActivity extends AppCompatActivity {
         }
     }
 
+    LocationListener locationListener = new LocationListener() {
+        @Override public void onLocationChanged(Location location) {
+            //Log.d("location", "Location: " + location);
+            locationProgessBar.setVisibility(ProgressBar.INVISIBLE);
+            getWeather();
+            //locationManager.removeUpdates(this);
+            //this.
+        }
+        @Override public void onStatusChanged(String s, int i, Bundle bundle) {}
+        @Override public void onProviderEnabled(String s) {}
+        @Override public void onProviderDisabled(String s) {}
+    };
+
     class MainThreadExecutor implements Executor {
         private final Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -189,15 +199,32 @@ public class ForecastActivity extends AppCompatActivity {
     WeatherDiffUtilCallback diffUtilCallback = new WeatherDiffUtilCallback();
 
     @SuppressLint("MissingPermission")
-    private void debugLocationRequest() {
+    private void forceLocationRequest() {
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        /*
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
-            @Override public void onLocationChanged(Location location) {}
+            @Override public void onLocationChanged(Location location) {
+                locationManager.removeUpdates(this);
+                //this.
+            }
             @Override public void onStatusChanged(String s, int i, Bundle bundle) {}
             @Override public void onProviderEnabled(String s) {}
             @Override public void onProviderDisabled(String s) {}
-        });
-
+        });*/
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+            locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListener, Looper.getMainLooper());
+        else
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) )
+                locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, Looper.getMainLooper());
+                else {
+                    this.startActivity(new Intent(
+                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    Toast.makeText(this, R.string.location_need, Toast.LENGTH_LONG);
+                    //isForceLocationRequest = false;
+            }
+        //locationManager.sto
 
     }
 
@@ -208,6 +235,7 @@ public class ForecastActivity extends AppCompatActivity {
         pressTextView = findViewById(R.id.press_TextView);
         logoTextView = findViewById(R.id.logo_name_TextView);
         toolbarLayout = findViewById(R.id.toolbar_layout);
+        locationProgessBar = findViewById(R.id.locationProgressBar);
         setSupportActionBar(toolbar);
         final PagedRecyclerViewAdapter pagedAdapter = new PagedRecyclerViewAdapter(diffUtilCallback);
         final RecyclerView recyclerView = findViewById(R.id.forecast_RecyclerView);
@@ -232,13 +260,19 @@ public class ForecastActivity extends AppCompatActivity {
 //////////////////////////////////////////////////
         recyclerView.setAdapter(pagedAdapter);//new SimpleItemRecyclerViewAdapter(this, ModuleList.ITEMS, mTwoPane))
         getWeather();
-
+        if (reloadDataOnCreate) {
+            model.reloadForecastDatabase(() -> recyclerView.setAdapter(pagedAdapter));
+            reloadDataOnCreate = false;
+        }
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        reloadDataOnCreate = true;
         super.onCreate(savedInstanceState);
+        //debugLocationRequest();
+
         setContentView(R.layout.activity_forecast);
         permissionRequest();
     }
@@ -263,6 +297,12 @@ public class ForecastActivity extends AppCompatActivity {
                             model.getOfflineWeather().observeOn(AndroidSchedulers.mainThread()).subscribe(w -> {
                                 weather = WeatherConverter.toWeather(w);
                                 showWeather();
+                                if (Locator.getInstance(ForecastActivity.this).getLocation() == null && !isForceLocationRequest) {
+                                    forceLocationRequest();
+                                    isForceLocationRequest = true;
+                                    Toast.makeText(ForecastActivity.this, ForecastActivity.this.getString(R.string.location_request), Toast.LENGTH_LONG).show();
+                                    locationProgessBar.setVisibility(ProgressBar.VISIBLE);
+                                }
                             });
 
                        }, () -> showWeather()
@@ -288,14 +328,14 @@ public class ForecastActivity extends AppCompatActivity {
 
     private void permissionRequest() {
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
+                Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Permission is not granted
             // Should we show an explanation?
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
 //                // Show an explanation to the user *asynchronously* -- don't block
 //                // this thread waiting for the user's response! After the user
 //                // sees the explanation, try again to request the permission.
@@ -305,8 +345,8 @@ public class ForecastActivity extends AppCompatActivity {
 //                // No explanation needed; request the permission
 
                 ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION); //MY_PERMISSIONS_REQUEST_READ_CONTACTS
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION); //MY_PERMISSIONS_REQUEST_READ_CONTACTS
 
 //                        Toast.makeText(this, "Request Permissions", Toast.LENGTH_LONG);
 //                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
@@ -316,7 +356,6 @@ public class ForecastActivity extends AppCompatActivity {
         } else {
             createContent();
         }
-
     }
 
 
@@ -324,13 +363,15 @@ public class ForecastActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION: {
+            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
+                    isForceLocationRequest = false;
                     createContent();
+
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
@@ -349,8 +390,10 @@ public class ForecastActivity extends AppCompatActivity {
         super.onResume();
         WeatherForecastProvider provider = PreferenceController.createWeatherForecastProvider(this);
         if (provider != null) {
-            if ("".equals(providerName) || this.providerName.equals(provider.getName())) return;
+            if (("".equals(providerName) || this.providerName.equals(provider.getName())) && !isForceLocationRequest) return;
+            isForceLocationRequest = false;
             permissionRequest();
+
         }
     }
 }
